@@ -10,11 +10,10 @@ namespace AdventOfCode2019
         private static readonly string[][] _inputs = File.ReadAllText(@"Inputs/Day3.txt").Split('\n').Select(x => x.Split(',')).ToArray();
         public void Run()
         {
-            PartOne();
-            PartTwo();
+            PartOneAndTwo();
         }
 
-        private void PartOne()
+        private void PartOneAndTwo()
         {
             var coordinateLists = new List<List<Coordinate>>();
 
@@ -24,6 +23,7 @@ namespace AdventOfCode2019
 
                 var currentX = 0;
                 var currentY = 0;
+                var steps = 0;
 
                 foreach (var instruction in input)
                 {
@@ -32,6 +32,8 @@ namespace AdventOfCode2019
 
                     for (var i = 0; i < distance; i++)
                     {
+                        steps++;
+
                         switch (direction)
                         {
                             case "U":
@@ -48,7 +50,7 @@ namespace AdventOfCode2019
                                 break;
                         }
 
-                        inputList.Add(new Coordinate(currentX, currentY));
+                        inputList.Add(new Coordinate(currentX, currentY, steps));
                     }
 
                 }
@@ -70,12 +72,26 @@ namespace AdventOfCode2019
                 }
             }
 
+            // Part One Solution
             Console.WriteLine(closestDistance);
-        }
 
-        private void PartTwo()
-        {
+            var minimumSteps = 10000000;
 
+            foreach (var commonCoordinate in commonality)
+            {
+                // This probably works by pulling first because the first time a coordinate is reached 
+                // will be the smallest number of steps to reach that specific coordinate for that specific wire
+                var firstWire = coordinateLists[0].First(x => x.Equals(commonCoordinate));
+                var secondWire = coordinateLists[1].First(x => x.Equals(commonCoordinate));
+
+                if (firstWire.Steps + secondWire.Steps < minimumSteps)
+                {
+                    minimumSteps = (firstWire.Steps + secondWire.Steps);
+                }
+            }
+
+            // Part Two Solution
+            Console.WriteLine(minimumSteps);
         }
     }
 
@@ -83,11 +99,13 @@ namespace AdventOfCode2019
     {
         public int X { get; set; }
         public int Y { get; set; }
+        public int Steps { get; set; }
 
-        public Coordinate(int x, int y)
+        public Coordinate(int x, int y, int steps)
         {
             X = x;
             Y = y;
+            Steps = steps;
         }
 
         public override bool Equals(object obj)
