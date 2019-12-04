@@ -30,7 +30,17 @@ namespace AdventOfCode2019
 
         private void PartTwo()
         {
+            var totalValidPasswords = 0;
 
+            for (var i = _start; i <= _end; i++)
+            {
+                if (ValidateNumberStrict(i))
+                {
+                    totalValidPasswords++;
+                }
+            }
+
+            Console.WriteLine(totalValidPasswords);
         }
 
         private bool ValidateNumber(int number)
@@ -56,6 +66,28 @@ namespace AdventOfCode2019
             }
 
             return sequential;
+        }
+
+        private bool ValidateNumberStrict(int number)
+        {
+            var numberArray = number.ToString().Select(x => x.ToString()).ToArray();
+
+            for (var i = 1; i < numberArray.Length; i++)
+            {
+                var previousInt = int.Parse(numberArray[i - 1]);
+                var currentInt = int.Parse(numberArray[i]);
+
+                if (currentInt < previousInt)
+                {
+                    return false;
+                }
+            }
+
+            var characterCounts = numberArray.GroupBy(x => x).Select(y => new { Letter = y.Key, Count = y.Count() });
+
+            var doubleCharacters = characterCounts.Where(x => x.Count == 2);
+
+            return doubleCharacters.Any();
         }
     }
 }
