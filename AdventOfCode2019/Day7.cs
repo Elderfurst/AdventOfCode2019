@@ -100,13 +100,6 @@ namespace AdventOfCode2019
 
             var maxThrust = 0;
 
-            //var testCase = new int[] { 9, 8, 7, 6, 5 };
-
-            //permutations = new List<int[]>
-            //{
-            //    testCase
-            //};
-
             foreach (var permutation in permutations)
             {
                 var aComputer = new IntCodeComputer(_inputs);
