@@ -22,37 +22,11 @@ namespace AdventOfCode2019
             inputs[1] = noun;
             inputs[2] = verb;
 
-            for (var i = 0; i < inputs.Length; i += 4)
-            {
-                var firstLocation = inputs[i + 1];
-                var secondLocation = inputs[i + 2];
-                var outputLocation = inputs[i + 3];
+            var computer = new IntCodeComputer(inputs);
 
-                int first;
-                int second;
+            computer.CalculateIntCode();
 
-                switch (inputs[i])
-                {
-                    case 1:
-                        first = inputs[firstLocation];
-                        second = inputs[secondLocation];
-                        inputs[outputLocation] = first + second;
-                        break;
-                    case 2:
-                        first = inputs[firstLocation];
-                        second = inputs[secondLocation];
-                        inputs[outputLocation] = first * second;
-                        break;
-                    case 99:
-                        return inputs[0];
-                    default:
-                        Console.WriteLine("Something went wrong.");
-                        Environment.Exit(1);
-                        break;
-                }
-            }
-
-            return -1;
+            return computer.Inputs[0];
         }
 
         private void PartTwo()
