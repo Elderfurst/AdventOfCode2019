@@ -61,7 +61,42 @@ namespace AdventOfCode2019
 
         private void PartTwo()
         {
+            var width = 25;
+            var height = 6;
 
+            var layers = new List<int[,]>();
+
+            var numberOfLayers = _inputs.Length / (width * height);
+
+            var pointer = 0;
+
+            for (var i = 0; i < numberOfLayers; i++)
+            {
+                var newLayer = new int[height, width];
+
+                for (var j = 0; j < height; j++)
+                {
+                    for (var k = 0; k < width; k++)
+                    {
+                        newLayer[j, k] = _inputs[pointer];
+                        pointer++;
+                    }
+                }
+
+                layers.Add(newLayer);
+            }
+
+            for (var i = 0; i < height; i++)
+            {
+                for (var j = 0; j < width; j++)
+                {
+                    var pixel = layers.First(x => x[i, j] == 0 || x[i, j] == 1)[i, j];
+
+                    Console.Write(pixel);
+                }
+
+                Console.WriteLine();
+            }
         }
 
         private int CountNumbers(int[,] layer, int number)
