@@ -6,35 +6,25 @@ namespace AdventOfCode2019
 {
     public class Day1
     {
-        private static readonly double[] _inputs = File.ReadAllText(@"Inputs/Day1.txt").Split('\n').Select(double.Parse).ToArray();
+        private static readonly double[] Inputs = File.ReadAllLines(@"Inputs/Day1.txt").Select(double.Parse).ToArray();
         public void Run()
         {
-            PartOne();
-            PartTwo();
+            PartOneAndTwo();
         }
 
-        private void PartOne()
+        private void PartOneAndTwo()
         {
-            var totalFuel = 0.0;
+            var totalFuelPartOne = 0.0;
+            var totalFuelPartTwo = 0.0;
 
-            foreach (var input in _inputs)
+            foreach (var input in Inputs)
             {
-                totalFuel += Math.Floor(input / 3) - 2;
+                totalFuelPartOne += Math.Floor(input / 3) - 2;
+                totalFuelPartTwo += CalculateFuel(input);
             }
 
-            Console.WriteLine(totalFuel);
-        }
-
-        private void PartTwo()
-        {
-            var totalFuel = 0.0;
-
-            foreach (var input in _inputs)
-            {
-                totalFuel += CalculateFuel(input);
-            }
-
-            Console.WriteLine(totalFuel);
+            Console.WriteLine(totalFuelPartOne);
+            Console.WriteLine(totalFuelPartTwo);
         }
 
         private double CalculateFuel(double input)

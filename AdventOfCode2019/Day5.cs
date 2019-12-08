@@ -7,7 +7,7 @@ namespace AdventOfCode2019
 {
     public class Day5
     {
-        private static readonly int[] _inputs = File.ReadAllText(@"inputs/Day5.txt").Split(',').Select(int.Parse).ToArray();
+        private static readonly int[] Inputs = File.ReadAllText(@"inputs/Day5.txt").Split(',').Select(int.Parse).ToArray();
         public void Run()
         {
             PartOne();
@@ -21,9 +21,10 @@ namespace AdventOfCode2019
                 1
             };
 
-            var computer = new IntCodeComputer(_inputs);
-
-            computer.DiagnosticInputs = diagnosticInputs;
+            var computer = new IntCodeComputer(Inputs)
+            {
+                DiagnosticInputs = diagnosticInputs
+            };
 
             var output = 0;
 
@@ -41,9 +42,10 @@ namespace AdventOfCode2019
                 5
             };
 
-            var computer = new IntCodeComputer(_inputs);
-
-            computer.DiagnosticInputs = diagnosticInputs;
+            var computer = new IntCodeComputer(Inputs)
+            {
+                DiagnosticInputs = diagnosticInputs
+            };
 
             Console.WriteLine(computer.CalculateIntCode());
         }

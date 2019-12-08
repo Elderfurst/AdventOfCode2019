@@ -7,7 +7,7 @@ namespace AdventOfCode2019
 {
     public class Day7
     {
-        private static readonly int[] _inputs = File.ReadAllText(@"inputs/Day7.txt").Split(',').Select(int.Parse).ToArray();
+        private static readonly int[] Inputs = File.ReadAllText(@"inputs/Day7.txt").Split(',').Select(int.Parse).ToArray();
         public void Run()
         {
             PartOne();
@@ -30,7 +30,7 @@ namespace AdventOfCode2019
                 {
                     permutation[0], 0
                 };
-                var aComputer = new IntCodeComputer(_inputs)
+                var aComputer = new IntCodeComputer(Inputs)
                 {
                     DiagnosticInputs = aDiagnosticInputs
                 };
@@ -41,7 +41,7 @@ namespace AdventOfCode2019
                 {
                     permutation[1], aOutput
                 };
-                var bComputer = new IntCodeComputer(_inputs)
+                var bComputer = new IntCodeComputer(Inputs)
                 {
                     DiagnosticInputs = bDiagnosticInputs
                 };
@@ -52,7 +52,7 @@ namespace AdventOfCode2019
                 {
                     permutation[2], bOutput
                 };
-                var cComputer = new IntCodeComputer(_inputs)
+                var cComputer = new IntCodeComputer(Inputs)
                 {
                     DiagnosticInputs = cDiagnosticInputs
                 };
@@ -63,7 +63,7 @@ namespace AdventOfCode2019
                 {
                     permutation[3], cOutput
                 };
-                var dComputer = new IntCodeComputer(_inputs)
+                var dComputer = new IntCodeComputer(Inputs)
                 {
                     DiagnosticInputs = dDiagnosticInputs
                 };
@@ -74,7 +74,7 @@ namespace AdventOfCode2019
                 {
                     permutation[4], dOutput
                 };
-                var eComputer = new IntCodeComputer(_inputs)
+                var eComputer = new IntCodeComputer(Inputs)
                 {
                     DiagnosticInputs = eDiagnosticInputs
                 };
@@ -102,15 +102,15 @@ namespace AdventOfCode2019
 
             foreach (var permutation in permutations)
             {
-                var aComputer = new IntCodeComputer(_inputs);
+                var aComputer = new IntCodeComputer(Inputs);
 
-                var bComputer = new IntCodeComputer(_inputs);
+                var bComputer = new IntCodeComputer(Inputs);
 
-                var cComputer = new IntCodeComputer(_inputs);
-                ;
-                var dComputer = new IntCodeComputer(_inputs);
+                var cComputer = new IntCodeComputer(Inputs);
 
-                var eComputer = new IntCodeComputer(_inputs);
+                var dComputer = new IntCodeComputer(Inputs);
+
+                var eComputer = new IntCodeComputer(Inputs);
 
                 var permMaxThrust = 0;
 
@@ -121,9 +121,9 @@ namespace AdventOfCode2019
                     if (!aComputer.DiagnosticInputs.Any())
                     {
                         aComputer.DiagnosticInputs = new List<int>
-                    {
-                        permutation[0], 0
-                    };
+                        {
+                            permutation[0], 0
+                        };
                     }
                     else
                     {
@@ -141,9 +141,9 @@ namespace AdventOfCode2019
                     if (!bComputer.DiagnosticInputs.Any())
                     {
                         bComputer.DiagnosticInputs = new List<int>
-                    {
-                        permutation[1], aOutput
-                    };
+                        {
+                            permutation[1], aOutput
+                        };
                     }
                     else
                     {
@@ -161,9 +161,9 @@ namespace AdventOfCode2019
                     if (!cComputer.DiagnosticInputs.Any())
                     {
                         cComputer.DiagnosticInputs = new List<int>
-                    {
-                        permutation[2], bOutput
-                    };
+                        {
+                            permutation[2], bOutput
+                        };
                     }
                     else
                     {
@@ -181,9 +181,9 @@ namespace AdventOfCode2019
                     if (!dComputer.DiagnosticInputs.Any())
                     {
                         dComputer.DiagnosticInputs = new List<int>
-                    {
-                        permutation[3], cOutput
-                    };
+                        {
+                            permutation[3], cOutput
+                        };
                     }
                     else
                     {
@@ -201,9 +201,9 @@ namespace AdventOfCode2019
                     if (!eComputer.DiagnosticInputs.Any())
                     {
                         eComputer.DiagnosticInputs = new List<int>
-                    {
-                        permutation[4], dOutput
-                    };
+                        {
+                            permutation[4], dOutput
+                        };
                     }
                     else
                     {

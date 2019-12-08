@@ -5,42 +5,32 @@ namespace AdventOfCode2019
 {
     public class Day4
     {
-        private readonly int _start = 245318;
-        private readonly int _end = 765747;
+        private readonly int Start = 245318;
+        private readonly int End = 765747;
         public void Run()
         {
-            PartOne();
-            PartTwo();
+            PartOneAndTwo();
         }
 
-        private void PartOne()
+        private void PartOneAndTwo()
         {
             var totalValidPasswords = 0;
+            var totalValidPasswordsStrict = 0;
 
-            for (var i = _start; i <= _end; i++)
+            for (var i = Start; i <= End; i++)
             {
                 if (ValidateNumber(i))
                 {
                     totalValidPasswords++;
                 }
-            }
-
-            Console.WriteLine(totalValidPasswords);
-        }
-
-        private void PartTwo()
-        {
-            var totalValidPasswords = 0;
-
-            for (var i = _start; i <= _end; i++)
-            {
-                if (ValidateNumberStrict(i))
+                if(ValidateNumberStrict(i))
                 {
-                    totalValidPasswords++;
+                    totalValidPasswordsStrict++;
                 }
             }
 
             Console.WriteLine(totalValidPasswords);
+            Console.WriteLine(totalValidPasswordsStrict);
         }
 
         private bool ValidateNumber(int number)

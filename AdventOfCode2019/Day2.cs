@@ -6,7 +6,7 @@ namespace AdventOfCode2019
 {
     public class Day2
     {
-        private static readonly int[] _inputs = File.ReadAllText(@"Inputs/Day2.txt").Split(',').Select(int.Parse).ToArray();
+        private static readonly int[] Inputs = File.ReadAllText(@"Inputs/Day2.txt").Split(',').Select(int.Parse).ToArray();
         public void Run()
         {
             Console.WriteLine(PartOne(12, 2));
@@ -15,9 +15,9 @@ namespace AdventOfCode2019
 
         private int PartOne(int noun, int verb)
         {
-            var inputs = new int[_inputs.Length];
+            var inputs = new int[Inputs.Length];
 
-            Array.Copy(_inputs, 0, inputs, 0, _inputs.Length);
+            Array.Copy(Inputs, 0, inputs, 0, Inputs.Length);
 
             inputs[1] = noun;
             inputs[2] = verb;

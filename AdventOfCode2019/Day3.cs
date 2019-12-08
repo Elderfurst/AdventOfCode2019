@@ -7,7 +7,7 @@ namespace AdventOfCode2019
 {
     public class Day3
     {
-        private static readonly string[][] _inputs = File.ReadAllText(@"Inputs/Day3.txt").Split('\n').Select(x => x.Split(',')).ToArray();
+        private static readonly string[][] Inputs = File.ReadAllLines(@"Inputs/Day3.txt").Select(x => x.Split(',')).ToArray();
         public void Run()
         {
             PartOneAndTwo();
@@ -17,7 +17,7 @@ namespace AdventOfCode2019
         {
             var coordinateLists = new List<List<Coordinate>>();
 
-            foreach (var input in _inputs)
+            foreach (var input in Inputs)
             {
                 var inputList = new List<Coordinate>();
 
@@ -79,8 +79,8 @@ namespace AdventOfCode2019
 
             foreach (var commonCoordinate in commonality)
             {
-                // This probably works by pulling first because the first time a coordinate is reached 
-                // will be the smallest number of steps to reach that specific coordinate for that specific wire
+                // This works by pulling first because the first time a coordinate is reached will be
+                // the smallest number of steps to reach that specific coordinate for that specific wire
                 var firstWire = coordinateLists[0].First(x => x.Equals(commonCoordinate));
                 var secondWire = coordinateLists[1].First(x => x.Equals(commonCoordinate));
 

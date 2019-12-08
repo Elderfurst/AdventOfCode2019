@@ -8,7 +8,7 @@ namespace AdventOfCode2019
 {
     public class Day6
     {
-        private static readonly List<string[]> _orbits = File.ReadAllLines(@"Inputs/Day6.txt").Select(x => x.Split(')')).ToList();
+        private static readonly List<string[]> Orbits = File.ReadAllLines(@"Inputs/Day6.txt").Select(x => x.Split(')')).ToList();
         public void Run()
         {
             PartOne();
@@ -40,7 +40,7 @@ namespace AdventOfCode2019
 
         private void BuildTree(Node root, string node)
         {
-            var children = _orbits.Where(x => x[0] == node);
+            var children = Orbits.Where(x => x[0] == node);
 
             var parent = root.Find(node);
 
@@ -69,7 +69,6 @@ namespace AdventOfCode2019
                 return 1 + Parent.ParentCount;
             }
         }
-
         public int ChildrenCount => Children.Count;
 
         public Node(string name)
@@ -131,11 +130,6 @@ namespace AdventOfCode2019
             path.AddRange(Parent.PathToRoot());
 
             return path;
-        }
-
-        public void MakeRoot()
-        {
-            Parent = null;
         }
     }
 }

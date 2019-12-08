@@ -7,7 +7,7 @@ namespace AdventOfCode2019
 {
     class Day8
     {
-        private static readonly int[] _inputs = File.ReadAllText(@"Inputs/Day8.txt").Select(x => int.Parse(x.ToString())).ToArray();
+        private static readonly int[] Inputs = File.ReadAllText(@"Inputs/Day8.txt").Select(x => int.Parse(x.ToString())).ToArray();
         
         private static readonly List<int[,]> Layers = new List<int[,]>();
 
@@ -24,7 +24,7 @@ namespace AdventOfCode2019
 
         private void ParseLayers()
         {
-            var numberOfLayers = _inputs.Length / (Width * Height);
+            var numberOfLayers = Inputs.Length / (Width * Height);
 
             var pointer = 0;
 
@@ -36,7 +36,7 @@ namespace AdventOfCode2019
                 {
                     for (var k = 0; k < Width; k++)
                     {
-                        newLayer[j, k] = _inputs[pointer];
+                        newLayer[j, k] = Inputs[pointer];
                         pointer++;
                     }
                 }
