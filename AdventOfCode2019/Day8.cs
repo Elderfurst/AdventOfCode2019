@@ -8,44 +8,50 @@ namespace AdventOfCode2019
     class Day8
     {
         private static readonly int[] _inputs = File.ReadAllText(@"Inputs/Day8.txt").Select(x => int.Parse(x.ToString())).ToArray();
+        
+        private static readonly List<int[,]> Layers = new List<int[,]>();
+
+        private static readonly int Height = 6;
+
+        private static readonly int Width = 25;
+        
         public void Run()
         {
+            ParseLayers();
             PartOne();
             PartTwo();
         }
 
-        private void PartOne()
+        private void ParseLayers()
         {
-            var width = 25;
-            var height = 6;
-
-            var layers = new List<int[,]>();
-
-            var numberOfLayers = _inputs.Length / (width * height);
+            var numberOfLayers = _inputs.Length / (Width * Height);
 
             var pointer = 0;
 
             for (var i = 0; i < numberOfLayers; i++)
             {
-                var newLayer = new int[height, width];
+                var newLayer = new int[Height, Width];
 
-                for (var j = 0; j < height; j++)
+                for (var j = 0; j < Height; j++)
                 {
-                    for (var k = 0; k < width; k++)
+                    for (var k = 0; k < Width; k++)
                     {
                         newLayer[j, k] = _inputs[pointer];
                         pointer++;
                     }
                 }
 
-                layers.Add(newLayer);
+                Layers.Add(newLayer);
             }
+        }
 
-            var leastZeroes = new int[height, width];
+        private void PartOne()
+        {
+            var leastZeroes = new int[Height, Width];
 
             var totalZeroes = int.MaxValue;
 
-            foreach (var layer in layers)
+            foreach (var layer in Layers)
             {
                 var zeroes = CountNumbers(layer, 0);
 
@@ -61,36 +67,12 @@ namespace AdventOfCode2019
 
         private void PartTwo()
         {
-            var width = 25;
-            var height = 6;
-
-            var layers = new List<int[,]>();
-
-            var numberOfLayers = _inputs.Length / (width * height);
-
-            var pointer = 0;
-
-            for (var i = 0; i < numberOfLayers; i++)
+            for (var i = 0; i < Height; i++)
             {
-                var newLayer = new int[height, width];
-
-                for (var j = 0; j < height; j++)
+                for (var j = 0; j < Width; j++)
                 {
-                    for (var k = 0; k < width; k++)
-                    {
-                        newLayer[j, k] = _inputs[pointer];
-                        pointer++;
-                    }
-                }
-
-                layers.Add(newLayer);
-            }
-
-            for (var i = 0; i < height; i++)
-            {
-                for (var j = 0; j < width; j++)
-                {
-                    var pixel = layers.First(x => x[i, j] == 0 || x[i, j] == 1)[i, j];
+                    // Find the first layer with either a black or a white pixel
+                    var pixel = Layers.First(x => x[i, j] == 0 || x[i, j] == 1)[i, j];
 
                     Console.Write(pixel);
                 }
