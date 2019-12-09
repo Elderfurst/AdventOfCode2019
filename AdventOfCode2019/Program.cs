@@ -4,7 +4,7 @@
     {
         public static void Main()
         {
-            var run = new Day8();
+            var run = new Day9();
             run.Run();
         }
     }
