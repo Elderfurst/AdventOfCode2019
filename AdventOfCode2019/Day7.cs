@@ -7,7 +7,7 @@ namespace AdventOfCode2019
 {
     public class Day7
     {
-        private static readonly int[] Inputs = File.ReadAllText(@"inputs/Day7.txt").Split(',').Select(int.Parse).ToArray();
+        private static readonly long[] Inputs = File.ReadAllText(@"inputs/Day7.txt").Split(',').Select(long.Parse).ToArray();
         public void Run()
         {
             PartOne();
@@ -22,11 +22,11 @@ namespace AdventOfCode2019
 
             HeapsAlgorithm(numbers.Length, numbers, permutations);
 
-            var maxThrust = 0;
+            var maxThrust = 0L;
 
             foreach (var permutation in permutations)
             {
-                var aDiagnosticInputs = new List<int>
+                var aDiagnosticInputs = new List<long>
                 {
                     permutation[0], 0
                 };
@@ -37,7 +37,7 @@ namespace AdventOfCode2019
 
                 var aOutput = aComputer.CalculateIntCode();
 
-                var bDiagnosticInputs = new List<int>
+                var bDiagnosticInputs = new List<long>
                 {
                     permutation[1], aOutput
                 };
@@ -48,7 +48,7 @@ namespace AdventOfCode2019
 
                 var bOutput = bComputer.CalculateIntCode();
 
-                var cDiagnosticInputs = new List<int>
+                var cDiagnosticInputs = new List<long>
                 {
                     permutation[2], bOutput
                 };
@@ -59,7 +59,7 @@ namespace AdventOfCode2019
 
                 var cOutput = cComputer.CalculateIntCode();
 
-                var dDiagnosticInputs = new List<int>
+                var dDiagnosticInputs = new List<long>
                 {
                     permutation[3], cOutput
                 };
@@ -70,7 +70,7 @@ namespace AdventOfCode2019
 
                 var dOutput = dComputer.CalculateIntCode();
 
-                var eDiagnosticInputs = new List<int>
+                var eDiagnosticInputs = new List<long>
                 {
                     permutation[4], dOutput
                 };
@@ -98,7 +98,7 @@ namespace AdventOfCode2019
 
             HeapsAlgorithm(numbers.Length, numbers, permutations);
 
-            var maxThrust = 0;
+            var maxThrust = 0L;
 
             foreach (var permutation in permutations)
             {
@@ -112,7 +112,7 @@ namespace AdventOfCode2019
 
                 var eComputer = new IntCodeComputer(Inputs);
 
-                var permMaxThrust = 0;
+                var permMaxThrust = 0L;
 
                 var stayLooping = true;
 
@@ -120,7 +120,7 @@ namespace AdventOfCode2019
                 {
                     if (!aComputer.DiagnosticInputs.Any())
                     {
-                        aComputer.DiagnosticInputs = new List<int>
+                        aComputer.DiagnosticInputs = new List<long>
                         {
                             permutation[0], 0
                         };
@@ -140,7 +140,7 @@ namespace AdventOfCode2019
 
                     if (!bComputer.DiagnosticInputs.Any())
                     {
-                        bComputer.DiagnosticInputs = new List<int>
+                        bComputer.DiagnosticInputs = new List<long>
                         {
                             permutation[1], aOutput
                         };
@@ -160,7 +160,7 @@ namespace AdventOfCode2019
 
                     if (!cComputer.DiagnosticInputs.Any())
                     {
-                        cComputer.DiagnosticInputs = new List<int>
+                        cComputer.DiagnosticInputs = new List<long>
                         {
                             permutation[2], bOutput
                         };
@@ -180,7 +180,7 @@ namespace AdventOfCode2019
 
                     if (!dComputer.DiagnosticInputs.Any())
                     {
-                        dComputer.DiagnosticInputs = new List<int>
+                        dComputer.DiagnosticInputs = new List<long>
                         {
                             permutation[3], cOutput
                         };
@@ -200,7 +200,7 @@ namespace AdventOfCode2019
 
                     if (!eComputer.DiagnosticInputs.Any())
                     {
-                        eComputer.DiagnosticInputs = new List<int>
+                        eComputer.DiagnosticInputs = new List<long>
                         {
                             permutation[4], dOutput
                         };

@@ -6,26 +6,26 @@ namespace AdventOfCode2019
 {
     public class IntCodeComputer
     {
-        public int[] Inputs { get; set; }
-        public int Counter { get; set; }
-        public int RelativeBase { get; set; }
-        public List<int> DiagnosticInputs { get; set; }
+        public long[] Inputs { get; set; }
+        public long Counter { get; set; }
+        public long RelativeBase { get; set; }
+        public List<long> DiagnosticInputs { get; set; }
         public int DiagnosticCounter { get; set; }
 
-        public IntCodeComputer(int[] inputs)
+        public IntCodeComputer(long[] inputs)
         {
-            var tempInput = new int[inputs.Length];
+            var tempInput = new long[inputs.Length + 50000];
 
             Array.Copy(inputs, 0, tempInput, 0, inputs.Length);
 
             Inputs = tempInput;
-            DiagnosticInputs = new List<int>();
+            DiagnosticInputs = new List<long>();
             Counter = 0;
             RelativeBase = 0;
             DiagnosticCounter = 0;
         }
 
-        public int CalculateIntCode()
+        public long CalculateIntCode()
         {
             while (Counter < Inputs.Length)
             {
@@ -50,7 +50,7 @@ namespace AdventOfCode2019
                         var firstModeAdd = modes.Any() ? modes[0] : 0;
                         var firstParameterAdd = Inputs[Counter + 1];
 
-                        var firstValueAdd = 0;
+                        var firstValueAdd = 0L;
 
                         switch (firstModeAdd)
                         {
@@ -70,7 +70,7 @@ namespace AdventOfCode2019
                         var secondModeAdd = modes.Count() >= 2 ? modes[1] : 0;
                         var secondParameterAdd = Inputs[Counter + 2];
 
-                        var secondValueAdd = 0;
+                        var secondValueAdd = 0L;
 
                         switch (secondModeAdd)
                         {
@@ -97,7 +97,7 @@ namespace AdventOfCode2019
                         var firstModeMult = modes.Any() ? modes[0] : 0;
                         var firstParameterMult = Inputs[Counter + 1];
 
-                        var firstValueMult = 0;
+                        var firstValueMult = 0L;
 
                         switch (firstModeMult)
                         {
@@ -117,7 +117,7 @@ namespace AdventOfCode2019
                         var secondModeMult = modes.Count() >= 2 ? modes[1] : 0;
                         var secondParameterMult = Inputs[Counter + 2];
 
-                        var secondValueMult = 0;
+                        var secondValueMult = 0L;
 
                         switch (secondModeMult)
                         {
@@ -141,8 +141,22 @@ namespace AdventOfCode2019
 
                         break;
                     case 3:
+                        var modeOutput = modes.Any() ? modes[0] : 0;
                         var outputParameterInput = Inputs[Counter + 1];
-                        Inputs[outputParameterInput] = DiagnosticInputs[DiagnosticCounter];
+
+                        switch (modeOutput)
+                        {
+                            case 0:
+                                Inputs[outputParameterInput] = DiagnosticInputs[DiagnosticCounter];
+                                break;
+                            case 1:
+                                Console.WriteLine("This shouldn't happen");
+                                Inputs[outputParameterInput] = DiagnosticInputs[DiagnosticCounter];
+                                break;
+                            case 2:
+                                Inputs[outputParameterInput + RelativeBase] = DiagnosticInputs[DiagnosticCounter];
+                                break;
+                        }
 
                         Counter += 2;
                         DiagnosticCounter++;
@@ -152,7 +166,7 @@ namespace AdventOfCode2019
                         var mode = modes.Any() ? modes[0] : 0;
                         var outputParameter = Counter + 1;
 
-                        var value = 0;
+                        var value = 0L;
 
                         switch (mode)
                         {
@@ -176,7 +190,7 @@ namespace AdventOfCode2019
                         var firstModeTrue = modes.Any() ? modes[0] : 0;
                         var firstParameterTrue = Inputs[Counter + 1];
 
-                        var firstValueTrue = 0;
+                        var firstValueTrue = 0L;
 
                         switch (firstModeTrue)
                         {
@@ -196,7 +210,7 @@ namespace AdventOfCode2019
                         var secondModeTrue = modes.Count >= 2 ? modes[1] : 0;
                         var secondParameterTrue = Inputs[Counter + 2];
 
-                        var secondValueTrue = 0;
+                        var secondValueTrue = 0L;
 
                         switch (secondModeTrue)
                         {
@@ -227,7 +241,7 @@ namespace AdventOfCode2019
                         var firstModeFalse = modes.Any() ? modes[0] : 0;
                         var firstParameterFalse = Inputs[Counter + 1];
 
-                        var firstValueFalse = 0;
+                        var firstValueFalse = 0L;
 
                         switch (firstModeFalse)
                         {
@@ -247,7 +261,7 @@ namespace AdventOfCode2019
                         var secondModeFalse = modes.Count >= 2 ? modes[1] : 0;
                         var secondParameterFalse = Inputs[Counter + 2];
 
-                        var secondValueFalse = 0;
+                        var secondValueFalse = 0L;
 
                         switch (secondModeFalse)
                         {
@@ -278,7 +292,7 @@ namespace AdventOfCode2019
                         var firstModeLess = modes.Any() ? modes[0] : 0;
                         var firstParameterLess = Inputs[Counter + 1];
 
-                        var firstValueLess = 0;
+                        var firstValueLess = 0L;
 
                         switch (firstModeLess)
                         {
@@ -298,7 +312,7 @@ namespace AdventOfCode2019
                         var secondModeLess = modes.Count >= 2 ? modes[1] : 0;
                         var secondParameterLess = Inputs[Counter + 2];
 
-                        var secondValueLess = 0;
+                        var secondValueLess = 0L;
 
                         switch (secondModeLess)
                         {
@@ -333,7 +347,7 @@ namespace AdventOfCode2019
                         var firstModeEqual = modes.Any() ? modes[0] : 0;
                         var firstParameterEqual = Inputs[Counter + 1];
 
-                        var firstValueEqual = 0;
+                        var firstValueEqual = 0L;
 
                         switch (firstModeEqual)
                         {
@@ -353,7 +367,7 @@ namespace AdventOfCode2019
                         var secondModeEqual = modes.Count >= 2 ? modes[1] : 0;
                         var secondParameterEqual = Inputs[Counter + 2];
 
-                        var secondValueEqual = 0;
+                        var secondValueEqual = 0L;
 
                         switch (secondModeEqual)
                         {

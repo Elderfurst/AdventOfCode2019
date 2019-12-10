@@ -7,7 +7,7 @@ namespace AdventOfCode2019
 {
     public class Day5
     {
-        private static readonly int[] Inputs = File.ReadAllText(@"inputs/Day5.txt").Split(',').Select(int.Parse).ToArray();
+        private static readonly long[] Inputs = File.ReadAllText(@"inputs/Day5.txt").Split(',').Select(long.Parse).ToArray();
         public void Run()
         {
             PartOne();
@@ -16,7 +16,7 @@ namespace AdventOfCode2019
 
         private void PartOne()
         {
-            var diagnosticInputs = new List<int>
+            var diagnosticInputs = new List<long>
             {
                 1
             };
@@ -26,7 +26,7 @@ namespace AdventOfCode2019
                 DiagnosticInputs = diagnosticInputs
             };
 
-            var output = 0;
+            var output = 0L;
 
             while (output != -1)
             {
@@ -37,7 +37,7 @@ namespace AdventOfCode2019
 
         private void PartTwo()
         {
-            var diagnosticInputs = new List<int>
+            var diagnosticInputs = new List<long>
             {
                 5
             };
